@@ -66,174 +66,56 @@
       <p>Cálculo vectorial multi-atributo (energía, valencia, bailabilidad y género) que asigna una distancia matemática transparente: cercana, intermedia o lejana.</p>
     </div>
     <div>
-      <span class="lbl">06 / Colección</span>
-      <b>Snippets y biblioteca local</b>
-      <p>Preescucha fragmentos clave de 30 segundos con reproductor interactivo, almacena tus descubrimientos en el dispositivo y expórtalos hacia tus listas.</p>
+      <span class="lbl">06 / Interacción</span>
+      <b>Duelos 1 vs 1 (Higher or Lower)</b>
+      <p>Eliges entre 2 canciones en un formato ágil tipo Higher or Lower: escuchas snippets de audio, eliges una opción y el algoritmo te pasa una nueva recomendación.</p>
     </div>
   </div>
 </section>
 
 <section id="prototipo">
   <div style="display:grid;gap:12px">
-    <span class="lbl">Prototipo funcional</span>
-    <h2>La aplicación en acción.</h2>
-    <p>Prueba en vivo la experiencia de Duety: ajusta el nivel de novedad y estado de ánimo, prueba el reproductor de snippets y visualiza tus descubrimientos en el radar.</p>
+    <span class="lbl">Prototipo interactivo</span>
+    <h2>Duelo musical: elige y descubre.</h2>
+    <p>La forma más simple de romper tu zona de confort: compara dos canciones, escucha un snippet, elige cuál prefieres y el algoritmo te pasará una nueva recomendación.</p>
   </div>
 
-  <div class="proto-container">
-    <div class="duety-app">
-      <!-- Topbar -->
-      <div class="duety-topbar">
-        <div class="duety-logo-badge">
-          <span class="live-pulse" title="Algoritmo activo"></span>
-          <b>Duety</b>
-          <span class="app-pill">Prototipo Interactivo</span>
-        </div>
-        <div class="duety-nav">
-          <button class="dtab on" id="tab-explore">Explorador</button>
-          <button class="dtab" id="tab-radar">Radar Sonoro</button>
-          <button class="dtab" id="tab-lib">Mi Biblioteca (<span id="lib-count">0</span>)</button>
-        </div>
+  <div class="duel-container">
+    <div class="duel-bar">
+      <div class="duel-status">
+        <span class="live-pulse" title="Algoritmo activo"></span>
+        <b>Duety Match</b>
+        <span class="app-pill">Prototipo 1 vs 1</span>
+      </div>
+      <div class="duel-score">
+        <span>Descubrimientos elegidos: <strong id="duel-count">0</strong></span>
+        <button class="text-btn" id="duel-reset" style="margin-left:14px">Reiniciar duelo</button>
+      </div>
+    </div>
+
+    <!-- Arena 1 vs 1 (Higher or Lower) -->
+    <div class="duel-arena">
+      <div class="duel-card" id="card-a">
+        <!-- Renderizado dinámicamente por script.js -->
       </div>
 
-      <!-- App Body -->
-      <div class="duety-body">
-        <!-- View 1: Explore -->
-        <div id="view-explore" class="app-panel">
-          <div class="control-deck">
-            <!-- Slider -->
-            <div class="ctrl-group">
-              <div class="ctrl-head">
-                <span class="lbl">Nivel de novedad (Distancia de tu zona de confort)</span>
-                <div class="novelty-indicator">
-                  <strong id="nov-val">3</strong>
-                  <span id="nov-desc">Exploración intermedia</span>
-                </div>
-              </div>
-              <input type="range" id="nov-slider" min="1" max="5" value="3" aria-label="Nivel de novedad">
-              <div class="range-marks">
-                <span>1 Seguro</span>
-                <span>2 Suave</span>
-                <span>3 Intermedio</span>
-                <span>4 Novedoso</span>
-                <span>5 Ruptura</span>
-              </div>
-            </div>
-
-            <!-- Mood & Emerging Filters -->
-            <div class="ctrl-row">
-              <div class="ctrl-group">
-                <span class="lbl">Estado de ánimo (Mood)</span>
-                <div class="chips" id="mood-chips">
-                  <button class="chip on" data-mood="all">Todos</button>
-                  <button class="chip" data-mood="energy">⚡ Enérgico</button>
-                  <button class="chip" data-mood="chill">🌙 Calma</button>
-                  <button class="chip" data-mood="nostalgia">🌌 Melancolía</button>
-                  <button class="chip" data-mood="focus">🎯 Focus</button>
-                  <button class="chip" data-mood="party">🔥 Fiesta</button>
-                </div>
-              </div>
-
-              <div class="ctrl-group">
-                <span class="lbl">Filtro de catálogo</span>
-                <div class="chips" id="filter-chips">
-                  <button class="chip on" data-filter="all">Todos los artistas</button>
-                  <button class="chip" data-filter="emerging">★ Solo emergentes</button>
-                  <button class="chip" data-filter="balanced">Equilibrado</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Genre chips -->
-            <div class="ctrl-group">
-              <div class="ctrl-head">
-                <span class="lbl">Géneros en tu radar</span>
-                <button class="text-btn" id="btn-all-genres">Seleccionar todos</button>
-              </div>
-              <div class="chips" id="genre-chips">
-                <button class="chip on" data-genre="0">Indie</button>
-                <button class="chip on" data-genre="1">Hip hop</button>
-                <button class="chip on" data-genre="2">Electrónica</button>
-                <button class="chip on" data-genre="3">Salsa / Latina</button>
-                <button class="chip on" data-genre="4">Rock</button>
-                <button class="chip on" data-genre="5">Jazz / Soul</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Song Stream -->
-          <div class="stream-head">
-            <div>
-              <b id="stream-count">10 canciones recomendadas</b>
-              <small id="stream-status">Calculadas según tu distancia vectorial</small>
-            </div>
-            <button class="chip" id="shuffle-btn">↻ Mezclar descubrimientos</button>
-          </div>
-          <div class="song-grid" id="song-grid">
-            <!-- Renderizado por script.js -->
-          </div>
-        </div>
-
-        <!-- View 2: Radar -->
-        <div id="view-radar" class="app-panel" style="display:none">
-          <div class="radar-wrapper">
-            <div style="text-align:center">
-              <b>Radar sónico de tu zona de confort</b>
-              <p style="font-size:13px;color:var(--mut);margin-top:4px">Canciones proyectadas en 3 órbitas según su distancia al centro. Haz clic en un punto para reproducir su snippet.</p>
-            </div>
-            <div class="radar-svg-box" id="radar-container">
-              <!-- SVG inyectado por script.js -->
-            </div>
-            <div class="radar-legend">
-              <span><i style="background:#4ade80"></i> Cercana (0 - 0.3)</span>
-              <span><i style="background:#38bdf8"></i> Intermedia (0.3 - 0.6)</span>
-              <span><i style="background:#c084fc"></i> Lejana / Ruptura (> 0.6)</span>
-              <span><i style="background:#facc15"></i> ★ Artista Emergente</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- View 3: Library -->
-        <div id="view-library" class="app-panel" style="display:none">
-          <div class="lib-header">
-            <div>
-              <b id="lib-title">Mis Descubrimientos Guardados</b>
-              <small id="lib-stats">0 canciones almacenadas localmente</small>
-            </div>
-            <button class="chip on" id="export-btn">Exportar a Playlist</button>
-          </div>
-          <div class="song-grid" id="lib-grid">
-            <!-- Canciones guardadas -->
-          </div>
-          <div class="lib-empty" id="lib-empty">
-            <span style="font-size:32px">🎧</span>
-            <b>Aún no has guardado canciones</b>
-            <p style="font-size:13px;max-width:38ch">Ve al Explorador o al Radar Sonoro, escucha snippets y presiona Guardar para crear tu colección personalizada.</p>
-          </div>
-        </div>
+      <div class="duel-vs">
+        <span>VS</span>
       </div>
 
-      <!-- Persistent Player Bar -->
-      <div class="duety-player" id="duety-player">
-        <div class="player-track">
-          <div class="player-cover" id="p-cov" style="background:#1e1e1e">🎵</div>
-          <div class="player-info">
-            <b id="p-title">Selecciona una canción</b>
-            <small id="p-artist">Escucha un snippet interactivo de 30s</small>
-          </div>
-        </div>
-        <div class="player-controls">
-          <button class="p-btn" id="p-prev" title="Canción anterior">⏮</button>
-          <button class="p-play" id="p-play" title="Reproducir / Pausa">▶</button>
-          <button class="p-btn" id="p-next" title="Siguiente canción">⏭</button>
-        </div>
-        <div class="player-meta">
-          <div class="sound-wave" id="sound-wave">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <span class="tag" id="p-distance">0.00 Distancia</span>
-          <button class="card-sv" id="p-save">Guardar</button>
-        </div>
+      <div class="duel-card" id="card-b">
+        <!-- Renderizado dinámicamente por script.js -->
+      </div>
+    </div>
+
+    <!-- Bandeja de canciones descubiertas -->
+    <div class="duel-tray">
+      <div class="duel-tray-head">
+        <span class="lbl">Tus canciones seleccionadas</span>
+        <span id="duel-diversity" style="font-size:12px;color:var(--mut)">Haz tu primera elección para calibrar la ruptura sónica</span>
+      </div>
+      <div class="duel-chips" id="duel-chips">
+        <small style="color:var(--mut)">Tus elecciones aparecerán aquí conforme elijas entre las 2 opciones.</small>
       </div>
     </div>
   </div>
