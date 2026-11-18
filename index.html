@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>música mixeria</title>
+<meta name="description" content="Descubre música fuera de tu zona de confort: tú decides cuánta novedad quieres.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎧%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="brand">música mixeria</div>
+<div class="pg" id="pg">1 / 6</div>
+
+<section id="hero">
+  <div class="scene" id="s1" aria-hidden="true"></div>
+  <h1><span><i>¿Listos para</i></span><span><i>hacer ruido?</i></span></h1>
+  <p>Descubre música fuera de tu zona de confort: tú decides cuánta novedad quieres.</p>
+  <div class="tk" aria-hidden="true"><div id="tk"></div></div>
+</section>
+
+<section>
+  <h2>Salir de tu zona de confort musical.</h2>
+  <p>Las recomendaciones de streaming suelen mantenerte dentro de tus gustos habituales. Este proyecto crea una experiencia de descubrimiento interactiva y personalizada para que encuentres artistas y canciones nuevas, con más autonomía y variedad.</p>
+  <div class="crit" style="margin-top:8px">
+    <div><b>Para quién</b><p>Personas que usan Spotify, YouTube Music, Apple Music o Deezer y quieren descubrir música nueva.</p></div>
+    <div><b>Qué cambia</b><p>Tú decides cuánta novedad quieres, en lugar de recibir siempre lo más genérico.</p></div>
+    <div><b>Quién más gana</b><p>Los artistas emergentes, que hoy tienen poca visibilidad frente a los más conocidos.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="two">
+    <div style="display:grid;gap:26px">
+      <h2>El MVP: un solo flujo.</h2>
+      <div class="fn">
+        <div><b>Gustos sin registro</b><p>Eliges artistas o géneros, sin cuenta ni login.</p></div>
+        <div><b>Novedad de 1 a 5 y género</b><p>Los dos parámetros que ajustas tú.</p></div>
+        <div><b>10 descubrimientos</b><p>Canciones y artistas fuera de tu zona de confort.</p></div>
+        <div><b>Etiqueta de cercanía</b><p>Cercana, intermedia o lejana, con la misma distancia del algoritmo.</p></div>
+        <div><b>Guardar</b><p>Tus descubrimientos se quedan guardados en el navegador.</p></div>
+      </div>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div class="win">
+        <div class="st" id="st"></div>
+        <div class="scr" id="scr" aria-live="polite"></div>
+        <div class="nv"><button class="sv" id="bk">Atrás</button><button class="chip on" id="nx">Siguiente</button></div>
+      </div>
+      <small>Canciones de ejemplo. El MVP usará un dataset de unas 600 canciones.</small>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="two">
+    <div style="display:grid;gap:26px">
+      <h2>La distancia es tu zona de confort.</h2>
+      <ol>
+        <li><div><b>Cada artista es un vector.</b><p>Sus géneros y los atributos de audio de sus canciones: energía, valencia, bailabilidad.</p></div></li>
+        <li><div><b>Tu zona de confort es el centro.</b><p>El promedio de los gustos que ingresas.</p></div></li>
+        <li><div><b>Cada canción recibe una distancia de 0 a 1.</b><p>El nivel 1 busca entre 0 y 0,3; el nivel 5, más allá de 0,6.</p></div></li>
+      </ol>
+    </div>
+    <svg viewBox="0 0 400 400" role="img" aria-label="Anillos de distancia alrededor de la zona de confort">
+      <g fill="none" stroke="#333"><circle cx="200" cy="200" r="64"/><circle cx="200" cy="200" r="128"/><circle cx="200" cy="200" r="190"/></g>
+      <circle cx="200" cy="200" r="20" fill="none" stroke="#fff" opacity=".6"><animate attributeName="r" values="14;190" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="5s" repeatCount="indefinite"/></circle>
+      <circle cx="200" cy="200" r="9" fill="#fff"/>
+      <g class="o" style="animation-duration:22s" fill="#fff"><circle cx="264" cy="200" r="5"/><circle cx="136" cy="200" r="3.5"/></g>
+      <g class="o" style="animation-duration:38s;animation-direction:reverse" fill="#aaa"><circle cx="328" cy="200" r="5"/><circle cx="72" cy="200" r="4"/><circle cx="200" cy="72" r="3.5"/></g>
+      <g class="o" style="animation-duration:60s" fill="none" stroke="#fff"><circle cx="390" cy="200" r="6"/><circle cx="10" cy="200" r="4"/><circle cx="200" cy="390" r="5"/></g>
+      <g font-family="Outfit,sans-serif" font-size="12" fill="#8b8b8b"><text x="208" y="146">cercana</text><text x="208" y="82">intermedia</text><text x="208" y="20">lejana</text></g>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <div class="two">
+    <h2>Lo que queda para después.</h2>
+    <div class="fn" style="display:grid;gap:8px">
+      <div><b>Siguiente versión</b><p>Parámetro de estado de ánimo, artistas emergentes primero, me gusta y no me gusta, y un enlace para escuchar cada canción.</p></div>
+      <div><b>Más adelante</b><p>Filtro por popularidad, conexión en vivo con las plataformas, exportar tus descubrimientos y duelos musicales.</p></div>
+      <div><b>Fuera de este MVP</b><p>Registro y perfiles de usuario, audio dentro de la app y una beta abierta.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="fin">
+  <h2>¿Listos para hacer ruido?</h2>
+  <p>Descubre música fuera de tu zona de confort. Tú pones el nivel de novedad.</p>
+  <div class="scene sm" id="s2" aria-hidden="true"></div>
+</section>
+
+<script src="script.js" defer></script>
+</body>
+</html>
