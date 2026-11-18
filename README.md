@@ -1,4 +1,4 @@
-# música mixeria
+# Duety
 
 Sitio estático (HTML, CSS y JavaScript puros). No necesita build ni dependencias.
 
@@ -11,6 +11,6 @@ Sitio estático (HTML, CSS y JavaScript puros). No necesita build ni dependencia
 ## Archivos
 - `index.html`: estructura de las 6 secciones.
 - `styles.css`: estilos, cinta 3D y animaciones.
-- `script.js`: cinta COMING SOON, mockup interactivo del MVP y navegación por teclado.
+- `script.js`: cinta COMING SOON, mockup interactivo del enfoque y navegación por teclado.
 
 Las fuentes (Outfit y Space Grotesk) se cargan desde Google Fonts.
